@@ -1,0 +1,3408 @@
+// 测试题目数据（直接加载，无需HTTP服务器）
+const TEST_DATA = {
+  "title": "测一测你骨子里更像哪个星座",
+  "description": "有人说星座是出生的印记，但骨子里的你，可能藏着另一个星座的灵魂",
+  "total_questions": 100,
+  "questions": [
+    {
+      "id": 1,
+      "question": "当你遇到一个极具挑战性的新任务时，你的第一反应是什么？",
+      "options": [
+        {
+          "text": "立刻兴奋地投入，相信能快速搞定",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "先观察分析，评估成功概率",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "寻找合作伙伴一起完成",
+          "constellations": [
+            "天秤座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "担心自己做不好，但会默默准备",
+          "constellations": [
+            "巨蟹座",
+            "金牛座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "question": "如果你的朋友突然取消了你们的约定，你的下意识想法是什么？",
+      "options": [
+        {
+          "text": "太好了！终于有自由时间了",
+          "constellations": [
+            "射手座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "是不是我哪里做得不对？",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "正好可以去做另一件计划中的事",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "有点失望，但理解对方可能有原因",
+          "constellations": [
+            "天秤座",
+            "金牛座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "question": "在选择度假目的地时，你更倾向于哪种类型？",
+      "options": [
+        {
+          "text": "从未去过的冒险之地",
+          "constellations": [
+            "射手座",
+            "白羊座"
+          ]
+        },
+        {
+          "text": "熟悉舒适的度假村",
+          "constellations": [
+            "金牛座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "文化丰富的古城",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "随性而定，看心情决定",
+          "constellations": [
+            "双子座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "question": "当你需要处理工作纠纷时，你通常会怎么做？",
+      "options": [
+        {
+          "text": "直接指出问题核心",
+          "constellations": [
+            "白羊座",
+            "天蝎座"
+          ]
+        },
+        {
+          "text": "委婉提醒，照顾对方感受",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "制定规则避免再次发生",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "暂时回避，等双方冷静",
+          "constellations": [
+            "天秤座",
+            "水瓶座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "question": "对于个人目标的实现，你更相信什么？",
+      "options": [
+        {
+          "text": "行动力胜过一切计划",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "周密计划是成功关键",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "人脉和机遇更重要",
+          "constellations": [
+            "双子座",
+            "天秤座"
+          ]
+        },
+        {
+          "text": "顺其自然，船到桥头自然直",
+          "constellations": [
+            "双鱼座",
+            "射手座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "question": "在团队中，你通常扮演什么角色？",
+      "options": [
+        {
+          "text": "决策者和推动者",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "协调者和关怀者",
+          "constellations": [
+            "天秤座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "策划者和改进者",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "创意提供者和氛围营造者",
+          "constellations": [
+            "水瓶座",
+            "双子座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "question": "当你面对批评时，你的第一反应是什么？",
+      "options": [
+        {
+          "text": "立即反驳，捍卫自己",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "内心受伤但表面平静",
+          "constellations": [
+            "巨蟹座",
+            "金牛座"
+          ]
+        },
+        {
+          "text": "理性分析批评是否合理",
+          "constellations": [
+            "水瓶座",
+            "处女座"
+          ]
+        },
+        {
+          "text": "一笑置之，不往心里去",
+          "constellations": [
+            "射手座",
+            "双子座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "question": "你如何管理个人财务？",
+      "options": [
+        {
+          "text": "随心所欲，开心最重要",
+          "constellations": [
+            "射手座",
+            "白羊座"
+          ]
+        },
+        {
+          "text": "精打细算，有详细计划",
+          "constellations": [
+            "处女座",
+            "金牛座"
+          ]
+        },
+        {
+          "text": "有大致规划但不严格",
+          "constellations": [
+            "天秤座",
+            "双子座"
+          ]
+        },
+        {
+          "text": "经常后悔冲动消费",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "question": "在选择伴侣时，你最看重什么？",
+      "options": [
+        {
+          "text": "激情和化学反应",
+          "constellations": [
+            "白羊座",
+            "天蝎座"
+          ]
+        },
+        {
+          "text": "安全感和稳定性",
+          "constellations": [
+            "金牛座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "智慧和精神共鸣",
+          "constellations": [
+            "水瓶座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "自由和相互尊重",
+          "constellations": [
+            "射手座",
+            "水瓶座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "question": "周末早晨醒来，你通常会做什么？",
+      "options": [
+        {
+          "text": "立即开始一天的活动",
+          "constellations": [
+            "白羊座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "悠闲享受早餐和咖啡",
+          "constellations": [
+            "金牛座",
+            "天秤座"
+          ]
+        },
+        {
+          "text": "检查待办事项清单",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "赖床到中午，享受慵懒",
+          "constellations": [
+            "双鱼座",
+            "巨蟹座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "question": "你处理情感问题的方式是什么？",
+      "options": [
+        {
+          "text": "直接表达，不藏心事",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "暗示希望对方能懂",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "分析问题根源",
+          "constellations": [
+            "处女座",
+            "天蝎座"
+          ]
+        },
+        {
+          "text": "转移注意力，逃避冲突",
+          "constellations": [
+            "射手座",
+            "水瓶座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "question": "你更擅长哪种思考方式？",
+      "options": [
+        {
+          "text": "直觉型，凭感觉判断",
+          "constellations": [
+            "双鱼座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "感受型，考虑他人情绪",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "逻辑型，分析前因后果",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "灵感型，跳跃性思维",
+          "constellations": [
+            "水瓶座",
+            "双子座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "question": "对于时尚和打扮，你的态度是什么？",
+      "options": [
+        {
+          "text": "大胆前卫，引领潮流",
+          "constellations": [
+            "狮子座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "经典优雅，注重质感",
+          "constellations": [
+            "金牛座",
+            "天秤座"
+          ]
+        },
+        {
+          "text": "简洁实用，注重细节",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "随性舒适，不拘一格",
+          "constellations": [
+            "射手座",
+            "白羊座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "question": "学习新技能时，你的方法是什么？",
+      "options": [
+        {
+          "text": "直接尝试，边做边学",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "系统学习，打好基础",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "寻找捷径和高效方法",
+          "constellations": [
+            "双子座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "凭兴趣，三分钟热度",
+          "constellations": [
+            "双子座",
+            "射手座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "question": "在社交场合中，你通常是什么样的？",
+      "options": [
+        {
+          "text": "话题中心和焦点人物",
+          "constellations": [
+            "狮子座",
+            "白羊座"
+          ]
+        },
+        {
+          "text": "细心倾听的陪伴者",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "理性客观的观察者",
+          "constellations": [
+            "处女座",
+            "天蝎座"
+          ]
+        },
+        {
+          "text": "幽默风趣的开心果",
+          "constellations": [
+            "射手座",
+            "双子座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "question": "面对人生重大决定，你会怎么做？",
+      "options": [
+        {
+          "text": "跟随内心冲动",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "咨询亲友意见",
+          "constellations": [
+            "巨蟹座",
+            "天秤座"
+          ]
+        },
+        {
+          "text": "列出利弊表格",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "拖延到最后一刻",
+          "constellations": [
+            "天秤座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "question": "你如何看待规则和传统？",
+      "options": [
+        {
+          "text": "乐于打破，创造新规则",
+          "constellations": [
+            "水瓶座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "尊重但会灵活变通",
+          "constellations": [
+            "天秤座",
+            "双子座"
+          ]
+        },
+        {
+          "text": "严格遵守，认为有必要",
+          "constellations": [
+            "摩羯座",
+            "金牛座"
+          ]
+        },
+        {
+          "text": "不太在意，随心而行",
+          "constellations": [
+            "射手座",
+            "白羊座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "question": "处理工作压力时，你倾向于怎么做？",
+      "options": [
+        {
+          "text": "加倍努力，克服困难",
+          "constellations": [
+            "摩羯座",
+            "白羊座"
+          ]
+        },
+        {
+          "text": "寻求支持和安慰",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "重新规划，提高效率",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "暂时逃避，放松心情",
+          "constellations": [
+            "射手座",
+            "天秤座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "question": "你的房间/办公桌通常是什么样的？",
+      "options": [
+        {
+          "text": "充满个性和创意摆设",
+          "constellations": [
+            "水瓶座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "整洁有序，每物有定位",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "实用为主，效率至上",
+          "constellations": [
+            "摩羯座",
+            "白羊座"
+          ]
+        },
+        {
+          "text": "有些杂乱但自己知道东西在哪",
+          "constellations": [
+            "射手座",
+            "双子座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "question": "你对未来的态度是什么？",
+      "options": [
+        {
+          "text": "充满期待，相信无限可能",
+          "constellations": [
+            "射手座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "略有担忧，希望稳定发展",
+          "constellations": [
+            "巨蟹座",
+            "金牛座"
+          ]
+        },
+        {
+          "text": "有计划地一步步实现目标",
+          "constellations": [
+            "摩羯座",
+            "处女座"
+          ]
+        },
+        {
+          "text": "活在当下，未来随缘",
+          "constellations": [
+            "双鱼座",
+            "天秤座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "question": "与人争论时，你的风格是什么？",
+      "options": [
+        {
+          "text": "强势，坚持己见",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "妥协，维持和谐",
+          "constellations": [
+            "天秤座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "讲道理，以理服人",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "幽默化解，避免冲突",
+          "constellations": [
+            "双子座",
+            "射手座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "question": "你如何处理失落情绪？",
+      "options": [
+        {
+          "text": "立即行动转移注意力",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "向亲友倾诉寻求安慰",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "独自思考消化情绪",
+          "constellations": [
+            "天蝎座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "通过创作或艺术表达",
+          "constellations": [
+            "双鱼座",
+            "水瓶座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "question": "对于爱情，你的信念是什么？",
+      "options": [
+        {
+          "text": "爱要轰轰烈烈",
+          "constellations": [
+            "狮子座",
+            "白羊座"
+          ]
+        },
+        {
+          "text": "细水长流才是真",
+          "constellations": [
+            "金牛座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "精神契合最重要",
+          "constellations": [
+            "水瓶座",
+            "天蝎座"
+          ]
+        },
+        {
+          "text": "彼此要有独立空间",
+          "constellations": [
+            "射手座",
+            "水瓶座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "question": "在团队项目中，你最不能忍受什么？",
+      "options": [
+        {
+          "text": "效率低下，拖延进度",
+          "constellations": [
+            "白羊座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "氛围紧张，关系不睦",
+          "constellations": [
+            "天秤座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "逻辑混乱，计划不周",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "限制过多，缺乏创意",
+          "constellations": [
+            "水瓶座",
+            "射手座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "question": "你如何看待改变？",
+      "options": [
+        {
+          "text": "热爱变化，寻求新鲜感",
+          "constellations": [
+            "射手座",
+            "双子座"
+          ]
+        },
+        {
+          "text": "慢慢适应，需要时间",
+          "constellations": [
+            "金牛座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "谨慎评估后再决定",
+          "constellations": [
+            "摩羯座",
+            "处女座"
+          ]
+        },
+        {
+          "text": "随遇而安，接受变化",
+          "constellations": [
+            "双鱼座",
+            "天秤座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "question": "你的时间观念是怎样的？",
+      "options": [
+        {
+          "text": "提前到达，讨厌迟到",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "准时，但不会太早",
+          "constellations": [
+            "金牛座",
+            "天秤座"
+          ]
+        },
+        {
+          "text": "经常踩点到达",
+          "constellations": [
+            "双子座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "经常迟到，时间观念弱",
+          "constellations": [
+            "双鱼座",
+            "水瓶座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "question": "选择电影类型时你的偏好是什么？",
+      "options": [
+        {
+          "text": "动作冒险片",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "浪漫爱情片",
+          "constellations": [
+            "双鱼座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "悬疑推理片",
+          "constellations": [
+            "天蝎座",
+            "处女座"
+          ]
+        },
+        {
+          "text": "奇幻想象片",
+          "constellations": [
+            "双鱼座",
+            "水瓶座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "question": "面对机会，你的态度是什么？",
+      "options": [
+        {
+          "text": "立即抓住，不留遗憾",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "谨慎考虑风险",
+          "constellations": [
+            "金牛座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "分析利弊再做决定",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "顺其自然，不强求",
+          "constellations": [
+            "双鱼座",
+            "天秤座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "question": "你更认同哪种成功哲学？",
+      "options": [
+        {
+          "text": "敢闯敢拼才能成功",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "稳扎稳打是王道",
+          "constellations": [
+            "金牛座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "智慧胜过蛮力",
+          "constellations": [
+            "水瓶座",
+            "天蝎座"
+          ]
+        },
+        {
+          "text": "机遇和缘分很重要",
+          "constellations": [
+            "双鱼座",
+            "天秤座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "question": "处理复杂问题时，你倾向于怎么做？",
+      "options": [
+        {
+          "text": "快速做出决定",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "征求多人意见",
+          "constellations": [
+            "天秤座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "深入研究分析",
+          "constellations": [
+            "处女座",
+            "天蝎座"
+          ]
+        },
+        {
+          "text": "相信直觉判断",
+          "constellations": [
+            "双鱼座",
+            "射手座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "question": "你如何看待承诺？",
+      "options": [
+        {
+          "text": "说到做到，极其重视",
+          "constellations": [
+            "摩羯座",
+            "天蝎座"
+          ]
+        },
+        {
+          "text": "尽力而为，但可调整",
+          "constellations": [
+            "天秤座",
+            "双子座"
+          ]
+        },
+        {
+          "text": "理性承诺，不轻易许诺",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "害怕承诺，喜欢自由",
+          "constellations": [
+            "射手座",
+            "水瓶座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "question": "在人际关系中，你更注重什么？",
+      "options": [
+        {
+          "text": "真诚直接",
+          "constellations": [
+            "白羊座",
+            "天蝎座"
+          ]
+        },
+        {
+          "text": "和谐融洽",
+          "constellations": [
+            "天秤座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "智慧交流",
+          "constellations": [
+            "水瓶座",
+            "处女座"
+          ]
+        },
+        {
+          "text": "自由轻松",
+          "constellations": [
+            "射手座",
+            "双子座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "question": "你的消费习惯是怎样的？",
+      "options": [
+        {
+          "text": "看中就买，不计后果",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "精打细算，货比三家",
+          "constellations": [
+            "金牛座",
+            "处女座"
+          ]
+        },
+        {
+          "text": "注重性价比",
+          "constellations": [
+            "摩羯座",
+            "天秤座"
+          ]
+        },
+        {
+          "text": "经常冲动消费后后悔",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "question": "面对陌生人，你通常怎么做？",
+      "options": [
+        {
+          "text": "主动交谈，毫不怯场",
+          "constellations": [
+            "狮子座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "保持距离，慢慢熟悉",
+          "constellations": [
+            "巨蟹座",
+            "天蝎座"
+          ]
+        },
+        {
+          "text": "观察对方，谨慎接触",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "随和自然，轻松相处",
+          "constellations": [
+            "天秤座",
+            "双子座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "question": "你如何定义幸福？",
+      "options": [
+        {
+          "text": "实现目标和成就",
+          "constellations": [
+            "摩羯座",
+            "白羊座"
+          ]
+        },
+        {
+          "text": "被爱和关怀包围",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "内心平静和理解",
+          "constellations": [
+            "金牛座",
+            "天秤座"
+          ]
+        },
+        {
+          "text": "自由自在地生活",
+          "constellations": [
+            "射手座",
+            "水瓶座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "question": "你处理错误的方式是什么？",
+      "options": [
+        {
+          "text": "立即改正并继续前进",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "反复思考哪里出错",
+          "constellations": [
+            "处女座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "分析原因避免再犯",
+          "constellations": [
+            "摩羯座",
+            "天蝎座"
+          ]
+        },
+        {
+          "text": "不太在意，向前看",
+          "constellations": [
+            "射手座",
+            "双子座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "question": "你更擅长哪种表达方式？",
+      "options": [
+        {
+          "text": "行动示范",
+          "constellations": [
+            "白羊座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "情感关怀",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "逻辑阐述",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "创意想象",
+          "constellations": [
+            "双鱼座",
+            "水瓶座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "question": "对于家务整理，你的态度是什么？",
+      "options": [
+        {
+          "text": "立即处理，不留尾巴",
+          "constellations": [
+            "白羊座",
+            "处女座"
+          ]
+        },
+        {
+          "text": "定期整理，保持整洁",
+          "constellations": [
+            "金牛座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "有自己的一套系统",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "需要时再整理",
+          "constellations": [
+            "射手座",
+            "双子座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "question": "你如何看待孤独？",
+      "options": [
+        {
+          "text": "难以忍受，需要陪伴",
+          "constellations": [
+            "狮子座",
+            "天秤座"
+          ]
+        },
+        {
+          "text": "偶尔需要，但不宜久",
+          "constellations": [
+            "巨蟹座",
+            "金牛座"
+          ]
+        },
+        {
+          "text": "享受独处，思考时间",
+          "constellations": [
+            "摩羯座",
+            "天蝎座"
+          ]
+        },
+        {
+          "text": "灵感来源，创作时机",
+          "constellations": [
+            "水瓶座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "question": "选择朋友时，你最看重什么？",
+      "options": [
+        {
+          "text": "义气和行动力",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "体贴和善解人意",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "智慧和深度",
+          "constellations": [
+            "天蝎座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "幽默和趣味相投",
+          "constellations": [
+            "射手座",
+            "双子座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "question": "面对不公平现象，你会怎么做？",
+      "options": [
+        {
+          "text": "立即站出来反对",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "默默帮助受害者",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "思考系统性解决方案",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "用幽默方式讽刺",
+          "constellations": [
+            "双子座",
+            "射手座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "question": "你的睡眠习惯是怎样的？",
+      "options": [
+        {
+          "text": "规律作息，雷打不动",
+          "constellations": [
+            "金牛座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "容易失眠，思虑过多",
+          "constellations": [
+            "处女座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "根据工作需要调整",
+          "constellations": [
+            "摩羯座",
+            "白羊座"
+          ]
+        },
+        {
+          "text": "随心而睡，没有规律",
+          "constellations": [
+            "射手座",
+            "水瓶座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "question": "你更认同哪种价值观？",
+      "options": [
+        {
+          "text": "勇敢追求想要的一切",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "珍惜眼前拥有的一切",
+          "constellations": [
+            "金牛座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "知识改变命运",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "生命在于体验",
+          "constellations": [
+            "射手座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "question": "处理信息时，你倾向于怎么做？",
+      "options": [
+        {
+          "text": "快速抓住重点",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "注意细节和情感色彩",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "分析逻辑关系",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "联想发散思维",
+          "constellations": [
+            "双子座",
+            "水瓶座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "question": "你如何面对年龄增长？",
+      "options": [
+        {
+          "text": "不服老，保持年轻心态",
+          "constellations": [
+            "射手座",
+            "白羊座"
+          ]
+        },
+        {
+          "text": "焦虑，担心失去魅力",
+          "constellations": [
+            "狮子座",
+            "天秤座"
+          ]
+        },
+        {
+          "text": "理性规划人生阶段",
+          "constellations": [
+            "摩羯座",
+            "处女座"
+          ]
+        },
+        {
+          "text": "顺其自然，每个年龄都好",
+          "constellations": [
+            "金牛座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "question": "在爱情中，你的弱点是什么？",
+      "options": [
+        {
+          "text": "占有欲强",
+          "constellations": [
+            "天蝎座",
+            "金牛座"
+          ]
+        },
+        {
+          "text": "过于敏感",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "要求完美",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "害怕承诺",
+          "constellations": [
+            "射手座",
+            "水瓶座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "question": "你更相信什么？",
+      "options": [
+        {
+          "text": "眼见为实",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "心感为真",
+          "constellations": [
+            "双鱼座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "数据为证",
+          "constellations": [
+            "水瓶座",
+            "处女座"
+          ]
+        },
+        {
+          "text": "直觉为准",
+          "constellations": [
+            "天蝎座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "question": "面对别人的成功，你的想法是什么？",
+      "options": [
+        {
+          "text": "我也要更加努力",
+          "constellations": [
+            "白羊座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "为他们感到开心",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "分析他们成功的原因",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "每个人都有自己的节奏",
+          "constellations": [
+            "天秤座",
+            "射手座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "question": "你的说话风格是怎样的？",
+      "options": [
+        {
+          "text": "直接了当，不绕弯子",
+          "constellations": [
+            "白羊座",
+            "天蝎座"
+          ]
+        },
+        {
+          "text": "委婉含蓄，顾及感受",
+          "constellations": [
+            "巨蟹座",
+            "天秤座"
+          ]
+        },
+        {
+          "text": "条理清晰，有理有据",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "风趣幽默，生动形象",
+          "constellations": [
+            "双子座",
+            "射手座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "question": "人生中你最害怕什么？",
+      "options": [
+        {
+          "text": "平庸无为",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "孤独终老",
+          "constellations": [
+            "巨蟹座",
+            "金牛座"
+          ]
+        },
+        {
+          "text": "愚蠢犯错",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "失去自由",
+          "constellations": [
+            "射手座",
+            "水瓶座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "question": "处理突发事件时，你的第一反应是什么？",
+      "options": [
+        {
+          "text": "立即采取行动控制局面",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "先安抚受影响的人的情绪",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "快速分析原因和影响",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "保持冷静，观察事态发展",
+          "constellations": [
+            "金牛座",
+            "天秤座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "question": "你如何看待命运和努力的关系？",
+      "options": [
+        {
+          "text": "人定胜天，努力改变命运",
+          "constellations": [
+            "白羊座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "命运安排，努力顺其自然",
+          "constellations": [
+            "双鱼座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "理性规划，努力实现目标",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "随缘而动，不强求结果",
+          "constellations": [
+            "射手座",
+            "天秤座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "question": "在团队中，你最能贡献的是什么？",
+      "options": [
+        {
+          "text": "领导力和决策力",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "凝聚力和关怀力",
+          "constellations": [
+            "巨蟹座",
+            "天秤座"
+          ]
+        },
+        {
+          "text": "分析力和规划力",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "创造力和灵感",
+          "constellations": [
+            "水瓶座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "question": "面对别人的误解，你通常会怎么做？",
+      "options": [
+        {
+          "text": "直接澄清，不容误会",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "暗自伤心，等待对方发现",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "理性解释，提供证据",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "觉得懂的人自然懂，不解释",
+          "constellations": [
+            "射手座",
+            "天蝎座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "question": "你更喜欢的交流方式是什么？",
+      "options": [
+        {
+          "text": "面对面直接交流",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "温柔体贴的对话",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "逻辑清晰的讨论",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "轻松幽默的闲聊",
+          "constellations": [
+            "双子座",
+            "射手座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "question": "对于个人空间，你的态度是什么？",
+      "options": [
+        {
+          "text": "欢迎朋友常来做客",
+          "constellations": [
+            "狮子座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "只对亲密的人开放",
+          "constellations": [
+            "巨蟹座",
+            "天蝎座"
+          ]
+        },
+        {
+          "text": "需要独处思考的时间",
+          "constellations": [
+            "摩羯座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "随性开放，没有限制",
+          "constellations": [
+            "双子座",
+            "天秤座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "question": "处理多项任务时，你的策略是什么？",
+      "options": [
+        {
+          "text": "集中精力逐个击破",
+          "constellations": [
+            "摩羯座",
+            "金牛座"
+          ]
+        },
+        {
+          "text": "根据重要性灵活调整",
+          "constellations": [
+            "双子座",
+            "天秤座"
+          ]
+        },
+        {
+          "text": "制定详细的时间表",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "随心所欲，看心情处理",
+          "constellations": [
+            "射手座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "question": "你如何看待冒险精神？",
+      "options": [
+        {
+          "text": "人生必须冒险才有意义",
+          "constellations": [
+            "射手座",
+            "白羊座"
+          ]
+        },
+        {
+          "text": "安全第一，冒险需谨慎",
+          "constellations": [
+            "金牛座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "计算风险收益比再决定",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "思想上的冒险比行动更重要",
+          "constellations": [
+            "水瓶座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "question": "你的记忆力特点是什么？",
+      "options": [
+        {
+          "text": "记住行动和结果",
+          "constellations": [
+            "白羊座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "记住感受和情绪",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "记住逻辑和规律",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "记住灵感和创意",
+          "constellations": [
+            "双子座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "question": "面对别人的请求，你通常会怎么做？",
+      "options": [
+        {
+          "text": "爽快答应并立即行动",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "难以拒绝，尽力帮忙",
+          "constellations": [
+            "巨蟹座",
+            "天秤座"
+          ]
+        },
+        {
+          "text": "评估自己是否有能力",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "看心情决定是否帮忙",
+          "constellations": [
+            "水瓶座",
+            "双子座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "question": "你更认同哪种爱情观？",
+      "options": [
+        {
+          "text": "爱就要全心全意",
+          "constellations": [
+            "天蝎座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "细水长流才是真",
+          "constellations": [
+            "金牛座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "精神共鸣最重要",
+          "constellations": [
+            "水瓶座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "保持自我和独立",
+          "constellations": [
+            "射手座",
+            "水瓶座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "question": "你处理失败的经验是什么？",
+      "options": [
+        {
+          "text": "快速振作，再次尝试",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "需要时间疗伤",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "总结经验，改进方法",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "相信另有安排",
+          "constellations": [
+            "双鱼座",
+            "天秤座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "question": "你如何看待物质享受？",
+      "options": [
+        {
+          "text": "努力赚钱，尽情享受",
+          "constellations": [
+            "狮子座",
+            "金牛座"
+          ]
+        },
+        {
+          "text": "适度享受，知足常乐",
+          "constellations": [
+            "巨蟹座",
+            "天秤座"
+          ]
+        },
+        {
+          "text": "实用为主，不追求奢华",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "精神享受重于物质",
+          "constellations": [
+            "水瓶座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "question": "在争论中，你更注重什么？",
+      "options": [
+        {
+          "text": "表达自己的观点",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "维护关系的和谐",
+          "constellations": [
+            "天秤座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "逻辑的正确性",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "讨论的趣味性",
+          "constellations": [
+            "双子座",
+            "射手座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "question": "你如何处理过去的回忆？",
+      "options": [
+        {
+          "text": "向前看，不沉溺过去",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "经常怀念美好时光",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "分析过去以指导未来",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "选择性记忆，记住美好",
+          "constellations": [
+            "天秤座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "question": "对于新技术，你的态度是什么？",
+      "options": [
+        {
+          "text": "积极尝试，乐于接受",
+          "constellations": [
+            "水瓶座",
+            "双子座"
+          ]
+        },
+        {
+          "text": "谨慎使用，确保安全",
+          "constellations": [
+            "金牛座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "研究原理后再使用",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "感兴趣但不深入",
+          "constellations": [
+            "双鱼座",
+            "天秤座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "question": "你更擅长处理哪种问题？",
+      "options": [
+        {
+          "text": "突发危机",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "人际关系",
+          "constellations": [
+            "天秤座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "复杂规划",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "创意构思",
+          "constellations": [
+            "水瓶座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "question": "面对别人的赞美，你通常会怎么做？",
+      "options": [
+        {
+          "text": "欣然接受并感谢",
+          "constellations": [
+            "狮子座",
+            "白羊座"
+          ]
+        },
+        {
+          "text": "谦虚推辞或不安",
+          "constellations": [
+            "巨蟹座",
+            "处女座"
+          ]
+        },
+        {
+          "text": "理性分析是否属实",
+          "constellations": [
+            "水瓶座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "幽默回应",
+          "constellations": [
+            "双子座",
+            "射手座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "question": "你的决策速度通常是怎样的？",
+      "options": [
+        {
+          "text": "快速决定，不犹豫",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "反复考虑，难下决定",
+          "constellations": [
+            "天秤座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "收集信息后决定",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "凭感觉随机决定",
+          "constellations": [
+            "双鱼座",
+            "射手座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "question": "你如何看待个人成长？",
+      "options": [
+        {
+          "text": "不断挑战自我极限",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "在稳定中慢慢进步",
+          "constellations": [
+            "金牛座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "通过学习系统提升",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "随性发展，自然成长",
+          "constellations": [
+            "双鱼座",
+            "天秤座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "question": "处理情感冲突时，你倾向于怎么做？",
+      "options": [
+        {
+          "text": "直接面对，尽快解决",
+          "constellations": [
+            "白羊座",
+            "天蝎座"
+          ]
+        },
+        {
+          "text": "委婉暗示，希望对方领会",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "冷静分析问题根源",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "暂时回避，等待情绪平复",
+          "constellations": [
+            "天秤座",
+            "射手座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 72,
+      "question": "你更相信哪种力量？",
+      "options": [
+        {
+          "text": "行动的力量",
+          "constellations": [
+            "白羊座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "情感的力量",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "智慧的力量",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "直觉的力量",
+          "constellations": [
+            "天蝎座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "question": "对于社会规范，你的态度是什么？",
+      "options": [
+        {
+          "text": "挑战不合理规范",
+          "constellations": [
+            "水瓶座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "遵守以维持和谐",
+          "constellations": [
+            "天秤座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "理性判断是否合理",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "不太在意规范",
+          "constellations": [
+            "射手座",
+            "白羊座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 74,
+      "question": "你如何面对不确定性？",
+      "options": [
+        {
+          "text": "主动创造确定性",
+          "constellations": [
+            "白羊座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "焦虑但接受现实",
+          "constellations": [
+            "巨蟹座",
+            "处女座"
+          ]
+        },
+        {
+          "text": "分析各种可能性",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "享受不确定性",
+          "constellations": [
+            "射手座",
+            "双子座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 75,
+      "question": "在爱情中，你更害怕什么？",
+      "options": [
+        {
+          "text": "失去激情",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "被背叛伤害",
+          "constellations": [
+            "天蝎座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "无法深度沟通",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "失去自由",
+          "constellations": [
+            "射手座",
+            "水瓶座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 76,
+      "question": "你的学习风格是怎样的？",
+      "options": [
+        {
+          "text": "实践中学习",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "系统化学习",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "研究式学习",
+          "constellations": [
+            "天蝎座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "灵感式学习",
+          "constellations": [
+            "双鱼座",
+            "双子座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 77,
+      "question": "处理工作细节时，你倾向于怎么做？",
+      "options": [
+        {
+          "text": "抓住重点，忽略细节",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "注意细节，追求完美",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "系统化处理细节",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "创意比细节重要",
+          "constellations": [
+            "水瓶座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 78,
+      "question": "你如何看待个人形象？",
+      "options": [
+        {
+          "text": "展现个性和自信",
+          "constellations": [
+            "狮子座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "得体优雅最重要",
+          "constellations": [
+            "天秤座",
+            "金牛座"
+          ]
+        },
+        {
+          "text": "整洁专业即可",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "舒适自然就好",
+          "constellations": [
+            "射手座",
+            "双子座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "question": "面对压力，你的生理反应是什么？",
+      "options": [
+        {
+          "text": "精力充沛，行动力增强",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "肠胃不适，睡眠受影响",
+          "constellations": [
+            "巨蟹座",
+            "处女座"
+          ]
+        },
+        {
+          "text": "头脑清晰，分析力增强",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "逃避现实，寻求放松",
+          "constellations": [
+            "射手座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 80,
+      "question": "你更认同哪种人生哲学？",
+      "options": [
+        {
+          "text": "人生得意须尽欢",
+          "constellations": [
+            "射手座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "平平淡淡才是真",
+          "constellations": [
+            "金牛座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "知识就是力量",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "生命在于体验",
+          "constellations": [
+            "双子座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 81,
+      "question": "处理信息过载时，你的方法是什么？",
+      "options": [
+        {
+          "text": "快速筛选重点信息",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "慢慢消化理解",
+          "constellations": [
+            "金牛座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "分类整理系统化",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "凭直觉选择关注点",
+          "constellations": [
+            "双鱼座",
+            "天蝎座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "question": "你如何看待传统价值观？",
+      "options": [
+        {
+          "text": "勇于打破传统",
+          "constellations": [
+            "水瓶座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "尊重并维护传统",
+          "constellations": [
+            "金牛座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "理性评判传统价值",
+          "constellations": [
+            "处女座",
+            "天秤座"
+          ]
+        },
+        {
+          "text": "不太在意传统",
+          "constellations": [
+            "射手座",
+            "双子座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 83,
+      "question": "在团队中，你最反感的行为是什么？",
+      "options": [
+        {
+          "text": "优柔寡断，缺乏行动力",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "冷漠自私，不顾他人",
+          "constellations": [
+            "巨蟹座",
+            "天秤座"
+          ]
+        },
+        {
+          "text": "逻辑混乱，计划不周",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "限制创意，死板教条",
+          "constellations": [
+            "水瓶座",
+            "射手座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 84,
+      "question": "你如何处理内心的矛盾？",
+      "options": [
+        {
+          "text": "快速做出选择",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "反复纠结难以决定",
+          "constellations": [
+            "天秤座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "分析利弊寻求最优解",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "暂时搁置等待灵感",
+          "constellations": [
+            "双鱼座",
+            "水瓶座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 85,
+      "question": "对于未来的担忧，你通常会怎么做？",
+      "options": [
+        {
+          "text": "用行动消除担忧",
+          "constellations": [
+            "白羊座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "过度思考可能的问题",
+          "constellations": [
+            "处女座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "制定计划防范风险",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "相信船到桥头自然直",
+          "constellations": [
+            "射手座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 86,
+      "question": "你更擅长哪种类型的创作？",
+      "options": [
+        {
+          "text": "实践性和行动性的",
+          "constellations": [
+            "白羊座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "情感细腻和关怀性的",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "逻辑严密和系统性的",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "灵感迸发和想象性的",
+          "constellations": [
+            "双鱼座",
+            "水瓶座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 87,
+      "question": "面对别人的缺点，你的态度是什么？",
+      "options": [
+        {
+          "text": "直接指出希望改进",
+          "constellations": [
+            "白羊座",
+            "处女座"
+          ]
+        },
+        {
+          "text": "包容理解，人无完人",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "分析原因帮助改进",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "觉得个性使然，无需改变",
+          "constellations": [
+            "射手座",
+            "天秤座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 88,
+      "question": "你如何定义真正的成功？",
+      "options": [
+        {
+          "text": "实现自我价值和目标",
+          "constellations": [
+            "摩羯座",
+            "白羊座"
+          ]
+        },
+        {
+          "text": "拥有美满的关系和家庭",
+          "constellations": [
+            "巨蟹座",
+            "金牛座"
+          ]
+        },
+        {
+          "text": "获得智慧和真理",
+          "constellations": [
+            "水瓶座",
+            "处女座"
+          ]
+        },
+        {
+          "text": "拥有自由和快乐",
+          "constellations": [
+            "射手座",
+            "双子座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 89,
+      "question": "处理日常琐事，你的方式是什么？",
+      "options": [
+        {
+          "text": "立即处理不留后患",
+          "constellations": [
+            "白羊座",
+            "处女座"
+          ]
+        },
+        {
+          "text": "按部就班完成",
+          "constellations": [
+            "金牛座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "优化流程提高效率",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "能拖就拖，最后处理",
+          "constellations": [
+            "射手座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 90,
+      "question": "你更相信哪种爱情模式？",
+      "options": [
+        {
+          "text": "一见钟情，电光火石",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "日久生情，细水长流",
+          "constellations": [
+            "金牛座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "灵魂伴侣，精神契合",
+          "constellations": [
+            "天蝎座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "各自独立，彼此成就",
+          "constellations": [
+            "水瓶座",
+            "射手座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 91,
+      "question": "面对社会不公，你的做法是什么？",
+      "options": [
+        {
+          "text": "勇敢发声，争取正义",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "默默帮助受害者",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "研究制度性解决方案",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "用艺术或幽默表达态度",
+          "constellations": [
+            "双子座",
+            "射手座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 92,
+      "question": "你的饮食习惯是怎样的？",
+      "options": [
+        {
+          "text": "大胆尝试各种美食",
+          "constellations": [
+            "射手座",
+            "白羊座"
+          ]
+        },
+        {
+          "text": "偏好熟悉和舒适的食物",
+          "constellations": [
+            "金牛座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "注重营养均衡",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "随心情变化",
+          "constellations": [
+            "双子座",
+            "双鱼座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 93,
+      "question": "你如何看待个人隐私？",
+      "options": [
+        {
+          "text": "相对开放，不介意分享",
+          "constellations": [
+            "射手座",
+            "白羊座"
+          ]
+        },
+        {
+          "text": "极其重视，保护私密",
+          "constellations": [
+            "天蝎座",
+            "巨蟹座"
+          ]
+        },
+        {
+          "text": "选择性分享，有界限",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "随性而为，没有固定原则",
+          "constellations": [
+            "双子座",
+            "射手座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 94,
+      "question": "处理情感依赖，你的态度是什么？",
+      "options": [
+        {
+          "text": "独立自主，不依赖他人",
+          "constellations": [
+            "水瓶座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "需要情感支持和依赖",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "理性平衡依赖关系",
+          "constellations": [
+            "天秤座",
+            "处女座"
+          ]
+        },
+        {
+          "text": "随缘而定，不强求",
+          "constellations": [
+            "射手座",
+            "双子座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 95,
+      "question": "你更认同哪种教育理念？",
+      "options": [
+        {
+          "text": "实践中学习成长",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "关爱中培养人格",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "系统中传授知识",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "启发中激发潜能",
+          "constellations": [
+            "水瓶座",
+            "双子座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 96,
+      "question": "面对衰老和死亡，你的想法是什么？",
+      "options": [
+        {
+          "text": "不惧死亡，活出精彩",
+          "constellations": [
+            "白羊座",
+            "射手座"
+          ]
+        },
+        {
+          "text": "恐惧死亡，珍惜生命",
+          "constellations": [
+            "巨蟹座",
+            "金牛座"
+          ]
+        },
+        {
+          "text": "理性面对，做好准备",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "顺其自然，不去多想",
+          "constellations": [
+            "双鱼座",
+            "天秤座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 97,
+      "question": "你如何处理内心的欲望？",
+      "options": [
+        {
+          "text": "努力追求满足欲望",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "克制欲望，保持平衡",
+          "constellations": [
+            "天秤座",
+            "处女座"
+          ]
+        },
+        {
+          "text": "理性分析欲望的合理性",
+          "constellations": [
+            "摩羯座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "随性而为，不压抑自己",
+          "constellations": [
+            "射手座",
+            "双子座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 98,
+      "question": "你更看重伴侣的哪种品质？",
+      "options": [
+        {
+          "text": "勇敢果断",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "温柔体贴",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "智慧深刻",
+          "constellations": [
+            "天蝎座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "自由洒脱",
+          "constellations": [
+            "射手座",
+            "水瓶座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 99,
+      "question": "面对人生低谷，你的信念是什么？",
+      "options": [
+        {
+          "text": "靠自己的力量重新站起",
+          "constellations": [
+            "白羊座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "相信亲友的支持和关爱",
+          "constellations": [
+            "巨蟹座",
+            "天秤座"
+          ]
+        },
+        {
+          "text": "用智慧和规划走出困境",
+          "constellations": [
+            "处女座",
+            "水瓶座"
+          ]
+        },
+        {
+          "text": "相信命运会有更好安排",
+          "constellations": [
+            "双鱼座",
+            "射手座"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "question": "整体来说，你觉得自己最大的特点是什么？",
+      "options": [
+        {
+          "text": "行动力和勇气",
+          "constellations": [
+            "白羊座",
+            "狮子座"
+          ]
+        },
+        {
+          "text": "感性和关怀力",
+          "constellations": [
+            "巨蟹座",
+            "双鱼座"
+          ]
+        },
+        {
+          "text": "理性和分析力",
+          "constellations": [
+            "处女座",
+            "摩羯座"
+          ]
+        },
+        {
+          "text": "创意和直觉力",
+          "constellations": [
+            "水瓶座",
+            "双鱼座"
+          ]
+        }
+      ]
+    }
+  ]
+};

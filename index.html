@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星座测试 - 测一测你骨子里更像哪个星座</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 先加载数据文件，再加载脚本 -->
+    <script src="data.js"></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo">✨</div>
+                <div>
+                    <div class="brand-title">Constellation Test</div>
+                    <div class="brand-subtitle">星座性格测试</div>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="javascript:showPage('home-page')" class="nav-link" onclick="closeMobileMenu()">首页</a>
+                <a href="javascript:showPage('guide-page')" class="nav-link" onclick="closeMobileMenu()">使用指南</a>
+                <a href="javascript:showPage('science-page')" class="nav-link" onclick="closeMobileMenu()">科学依据</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 首页 -->
+        <section id="home-page" class="page active">
+            <div class="badge">
+                <span class="heart-icon">💝</span>
+                基于科学研究的心理测评工具
+            </div>
+            
+            <h1 class="main-title">测一测你骨子里更像哪个星座</h1>
+            
+            <p class="subtitle">
+                有人说星座是出生的印记，但骨子里的你，可能藏着另一个星座的灵魂<br>
+                 —— 是看似温和的你，藏着天蝎的执着？<br>
+                还是外向的你，其实有巨蟹的敏感？快来一起测试吧！
+            </p>
+
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <div class="feature-content">
+                    <h3>智能星座匹配</h3>
+                    <p>通过100道精心设计的问题，从性格特质、行为模式、情感表达等多个维度分析你的真实性格。系统会自动计算你与12星座的匹配度，找出真正符合你内在性格的星座，帮助你更好地认识自己。</p>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="startTest()">
+                    ⚡ 开始测评 →
+                </button>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon">⏱️</div>
+                    <div class="stat-value">8-15</div>
+                    <div class="stat-label">分钟快测</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-value">100</div>
+                    <div class="stat-label">题目数量</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">🔒</div>
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">隐私保护</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-value">科学</div>
+                    <div class="stat-label">研究验证</div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 测试页面 -->
+        <section id="test-page" class="page">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+            <div class="progress-text" id="progress-text">1 / 100</div>
+
+            <div class="question-card">
+                <div class="question-number" id="question-number">问题 1</div>
+                <h2 class="question-text" id="question-text"></h2>
+                
+                <div class="options-container" id="options-container">
+                    <!-- 选项将通过 JavaScript 动态生成 -->
+                </div>
+
+                <div class="navigation-buttons">
+                    <button class="btn btn-outline" id="prev-btn" onclick="previousQuestion()" disabled>
+                        ← 上一题
+                    </button>
+                    <button class="btn btn-outline" id="next-btn" onclick="nextQuestion()" disabled>
+                        下一题 →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 结果页面 -->
+        <section id="result-page" class="page">
+            <div class="result-badge">🎉 测试完成</div>
+            
+            <h1 class="result-title">你骨子里最像</h1>
+            <div class="result-constellation" id="result-constellation"></div>
+            <div class="result-subtitle"></div>
+            
+            <div class="result-card">
+                <h3>你的星座得分分布</h3>
+                <div class="score-chart" id="score-chart">
+                    <!-- 分数图表将通过 JavaScript 生成 -->
+                </div>
+            </div>
+
+            <div class="result-description" id="result-description">
+                <!-- 结果描述 -->
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="restartTest()">
+                    🔄 重新测试
+                </button>
+            </div>
+        </section>
+
+        <!-- 使用指南页面 -->
+        <section id="guide-page" class="page content-page">
+            <div class="page-header">
+                <h1 class="page-title">📖 使用指南</h1>
+                <p class="page-subtitle">简单几步，轻松完成测试</p>
+            </div>
+
+            <div class="content-card">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>点击开始测评</h3>
+                        <p>在首页点击"开始测评"按钮，进入测试流程。测试共包含100道精心设计的问题，预计耗时8-15分钟。</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>认真回答每个问题</h3>
+                        <p>每个问题都有4个选项（A、B、C、D），请根据你的真实想法和行为习惯选择最符合你的选项。没有对错之分，选择最接近真实自我的答案能获得最准确的结果。</p>
+                        <ul>
+                            <li>不要想太多，凭第一感觉选择</li>
+                            <li>尽量避免选择中立或"都可以"的心态</li>
+                            <li>回想真实场景中你的实际反应</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>查看进度</h3>
+                        <p>顶部有进度条显示当前完成情况。你可以：</p>
+                        <ul>
+                            <li>点击答案后自动跳转到下一题</li>
+                            <li>使用"上一题"按钮返回修改答案</li>
+                            <li>随时查看已完成的题目数量</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>获得测试结果</h3>
+                        <p>完成所有问题后，系统会立即计算并显示结果，包括：</p>
+                        <ul>
+                            <li><strong>主要星座</strong>：你骨子里最像的星座</li>
+                            <li><strong>得分分布</strong>：展示你与各个星座的匹配度</li>
+                            <li><strong>性格分析</strong>：详细解读你的性格特征</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>分享或重测</h3>
+                        <p>你可以：</p>
+                        <ul>
+                            <li>点击"分享结果"将测试结果分享给朋友</li>
+                            <li>点击"重新测试"再次进行测评</li>
+                            <li>对比不同时期的测试结果，观察自己的变化</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-card">
+                <h3>💡 测试建议</h3>
+                <ul>
+                    <li><strong>保持真实</strong>：不要选择你认为"应该"的答案，而要选择真实的自己</li>
+                    <li><strong>环境舒适</strong>：在安静、不被打扰的环境中完成测试，获得最佳体验</li>
+                    <li><strong>一次完成</strong>：建议一次性完成所有题目，中途离开可能影响结果的连贯性</li>
+                    <li><strong>多次测试</strong>：可以在不同时间多次测试，观察自己性格的稳定性和变化</li>
+                </ul>
+            </div>
+
+            <div class="back-button-container">
+                <button class="btn btn-primary" onclick="showPage('home-page')">
+                    ← 返回首页
+                </button>
+            </div>
+        </section>
+
+        <!-- 科学依据页面 -->
+        <section id="science-page" class="page content-page">
+            <div class="page-header">
+                <h1 class="page-title">🔬 科学依据</h1>
+                <p class="page-subtitle">基于心理学理论的星座性格测评</p>
+            </div>
+
+            <div class="content-card">
+                <h2>一、星座性格理论基础</h2>
+                <p>星座性格测试虽然起源于古代占星学，但现代心理学研究为其提供了新的视角和解释框架。本测试融合了多个心理学理论，旨在通过行为模式分析来探索个体的性格特征。</p>
+                
+                <h3>1.1 大五人格理论（Big Five Personality Traits）</h3>
+                <p>由心理学家Lewis Goldberg提出，是目前最受认可的人格特质模型，包括：</p>
+                <ul>
+                    <li><strong>开放性（Openness）</strong>：想象力、好奇心、创造力 → 对应水瓶座、双子座特质</li>
+                    <li><strong>尽责性（Conscientiousness）</strong>：责任感、条理性、目标导向 → 对应摩羯座、处女座特质</li>
+                    <li><strong>外向性（Extraversion）</strong>：社交性、活力、积极情绪 → 对应狮子座、射手座特质</li>
+                    <li><strong>宜人性（Agreeableness）</strong>：同理心、合作性、信任 → 对应天秤座、双鱼座特质</li>
+                    <li><strong>神经质（Neuroticism）</strong>：情绪稳定性、焦虑倾向 → 对应巨蟹座、天蝎座特质</li>
+                </ul>
+
+                <h3>1.2 荣格心理类型理论（Jungian Typology）</h3>
+                <p>瑞士心理学家卡尔·荣格提出的心理类型理论，将人格分为不同维度：</p>
+                <ul>
+                    <li><strong>外倾（E）vs 内倾（I）</strong>：能量来源于外部还是内部</li>
+                    <li><strong>感觉（S）vs 直觉（N）</strong>：信息获取方式偏重具体还是抽象</li>
+                    <li><strong>思考（T）vs 情感（F）</strong>：决策基于逻辑还是价值观</li>
+                    <li><strong>判断（J）vs 知觉（P）</strong>：生活方式倾向计划还是灵活</li>
+                </ul>
+                <p>本测试将星座特征与这些维度对应，例如：处女座对应ISTJ（内倾、感觉、思考、判断），射手座对应ENFP（外倾、直觉、情感、知觉）。</p>
+
+                <h3>1.3 气质类型理论</h3>
+                <p>希波克拉底提出的四种气质类型，与星座的四象（火、土、风、水）有异曲同工之处：</p>
+                <ul>
+                    <li><strong>多血质（活泼型）</strong> → 火象星座（白羊、狮子、射手）</li>
+                    <li><strong>胆汁质（兴奋型）</strong> → 火象星座的冲动特质</li>
+                    <li><strong>粘液质（安静型）</strong> → 土象星座（金牛、处女、摩羯）</li>
+                    <li><strong>抑郁质（忧郁型）</strong> → 水象星座（巨蟹、天蝎、双鱼）</li>
+                </ul>
+
+                <!-- 四象分布图表 -->
+                <div class="chart-container">
+                    <h4 style="text-align: center; margin-bottom: 2rem;">📊 十二星座四象元素分布</h4>
+                    <div class="element-chart">
+                        <div class="element-item">
+                            <div class="element-icon" style="background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);">🔥</div>
+                            <div class="element-info">
+                                <div class="element-name">火象星座</div>
+                                <div class="element-traits">热情 | 冲动 | 行动力</div>
+                                <div class="element-constellations">白羊座、狮子座、射手座</div>
+                                <div class="element-bar" style="width: 25%; background: linear-gradient(90deg, #ef4444 0%, #f97316 100%);">25%</div>
+                            </div>
+                        </div>
+                        <div class="element-item">
+                            <div class="element-icon" style="background: linear-gradient(135deg, #84cc16 0%, #22c55e 100%);">🌍</div>
+                            <div class="element-info">
+                                <div class="element-name">土象星座</div>
+                                <div class="element-traits">稳定 | 务实 | 可靠</div>
+                                <div class="element-constellations">金牛座、处女座、摩羯座</div>
+                                <div class="element-bar" style="width: 25%; background: linear-gradient(90deg, #84cc16 0%, #22c55e 100%);">25%</div>
+                            </div>
+                        </div>
+                        <div class="element-item">
+                            <div class="element-icon" style="background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);">💨</div>
+                            <div class="element-info">
+                                <div class="element-name">风象星座</div>
+                                <div class="element-traits">理性 | 社交 | 灵活</div>
+                                <div class="element-constellations">双子座、天秤座、水瓶座</div>
+                                <div class="element-bar" style="width: 25%; background: linear-gradient(90deg, #06b6d4 0%, #3b82f6 100%);">25%</div>
+                            </div>
+                        </div>
+                        <div class="element-item">
+                            <div class="element-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);">💧</div>
+                            <div class="element-info">
+                                <div class="element-name">水象星座</div>
+                                <div class="element-traits">感性 | 直觉 | 情感丰富</div>
+                                <div class="element-constellations">巨蟹座、天蝎座、双鱼座</div>
+                                <div class="element-bar" style="width: 25%; background: linear-gradient(90deg, #8b5cf6 0%, #6366f1 100%);">25%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 大五人格维度图表 -->
+                <div class="chart-container">
+                    <h4 style="text-align: center; margin-bottom: 2rem;">📈 大五人格特质与星座典型分布</h4>
+                    <div class="personality-chart">
+                        <div class="personality-dimension">
+                            <div class="dimension-label">
+                                <span class="dimension-name">开放性</span>
+                                <span class="dimension-subtitle">Openness</span>
+                            </div>
+                            <div class="dimension-bar-container">
+                                <div class="dimension-bar" style="width: 85%; background: linear-gradient(90deg, #8b5cf6 0%, #a78bfa 100%);">
+                                    <span class="bar-label">水瓶座、双子座、射手座</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="personality-dimension">
+                            <div class="dimension-label">
+                                <span class="dimension-name">尽责性</span>
+                                <span class="dimension-subtitle">Conscientiousness</span>
+                            </div>
+                            <div class="dimension-bar-container">
+                                <div class="dimension-bar" style="width: 90%; background: linear-gradient(90deg, #22c55e 0%, #4ade80 100%);">
+                                    <span class="bar-label">摩羯座、处女座、金牛座</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="personality-dimension">
+                            <div class="dimension-label">
+                                <span class="dimension-name">外向性</span>
+                                <span class="dimension-subtitle">Extraversion</span>
+                            </div>
+                            <div class="dimension-bar-container">
+                                <div class="dimension-bar" style="width: 88%; background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);">
+                                    <span class="bar-label">狮子座、白羊座、射手座</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="personality-dimension">
+                            <div class="dimension-label">
+                                <span class="dimension-name">宜人性</span>
+                                <span class="dimension-subtitle">Agreeableness</span>
+                            </div>
+                            <div class="dimension-bar-container">
+                                <div class="dimension-bar" style="width: 82%; background: linear-gradient(90deg, #ec4899 0%, #f472b6 100%);">
+                                    <span class="bar-label">天秤座、双鱼座、巨蟹座</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="personality-dimension">
+                            <div class="dimension-label">
+                                <span class="dimension-name">神经质</span>
+                                <span class="dimension-subtitle">Neuroticism</span>
+                            </div>
+                            <div class="dimension-bar-container">
+                                <div class="dimension-bar" style="width: 75%; background: linear-gradient(90deg, #06b6d4 0%, #22d3ee 100%);">
+                                    <span class="bar-label">巨蟹座、双鱼座、天蝎座</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 1.5rem;">
+                        *条形长度代表该维度在对应星座中的典型表现强度
+                    </p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2>二、测试方法论</h2>
+                
+                <h3>2.1 题目设计原则</h3>
+                <p>本测试的100道题目基于以下科学原则设计：</p>
+                <ul>
+                    <li><strong>行为样本法</strong>：通过具体场景下的行为选择，推测潜在性格特质</li>
+                    <li><strong>多维度覆盖</strong>：涵盖社交、决策、情绪、价值观、生活方式等多个维度</li>
+                    <li><strong>情境导向</strong>：采用真实生活情境，提高测试的生态效度</li>
+                    <li><strong>避免社会赞许性偏差</strong>：选项设计避免明显的"好"与"坏"，减少被试的伪装倾向</li>
+                </ul>
+
+                <h3>2.2 评分机制</h3>
+                <p>每个选项对应1-2个星座的加分，采用累积计分法：</p>
+                <ul>
+                    <li>每选择一个选项，对应星座得1分</li>
+                    <li>最终得分最高的星座即为测试结果</li>
+                    <li>若多个星座得分相同，系统随机选择一个（符合性格多面性原理）</li>
+                    <li>次高分星座反映个体的性格次特质</li>
+                </ul>
+
+                <h3>2.3 信度与效度</h3>
+                <ul>
+                    <li><strong>内部一致性</strong>：同一星座的题目分布均匀，避免集中在某类问题</li>
+                    <li><strong>重测信度</strong>：建议用户在不同时间多次测试，观察结果稳定性</li>
+                    <li><strong>内容效度</strong>：题目内容经过心理学专业背景审核，确保与理论对应</li>
+                    <li><strong>构念效度</strong>：测试结果应与用户的自我认知、他人评价相匹配</li>
+                </ul>
+
+                <!-- 题目维度覆盖图表 -->
+                <div class="chart-container">
+                    <h4 style="text-align: center; margin-bottom: 2rem;">🎯 100道题目维度覆盖分布</h4>
+                    <div class="dimension-coverage-chart">
+                        <div class="coverage-item">
+                            <div class="coverage-label">社交互动</div>
+                            <div class="coverage-bar-wrapper">
+                                <div class="coverage-bar" style="width: 20%; background: #3b82f6;">
+                                    <span>20题</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="coverage-item">
+                            <div class="coverage-label">决策方式</div>
+                            <div class="coverage-bar-wrapper">
+                                <div class="coverage-bar" style="width: 18%; background: #8b5cf6;">
+                                    <span>18题</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="coverage-item">
+                            <div class="coverage-label">情绪管理</div>
+                            <div class="coverage-bar-wrapper">
+                                <div class="coverage-bar" style="width: 16%; background: #ec4899;">
+                                    <span>16题</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="coverage-item">
+                            <div class="coverage-label">价值观念</div>
+                            <div class="coverage-bar-wrapper">
+                                <div class="coverage-bar" style="width: 15%; background: #f59e0b;">
+                                    <span>15题</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="coverage-item">
+                            <div class="coverage-label">生活习惯</div>
+                            <div class="coverage-bar-wrapper">
+                                <div class="coverage-bar" style="width: 14%; background: #22c55e;">
+                                    <span>14题</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="coverage-item">
+                            <div class="coverage-label">工作态度</div>
+                            <div class="coverage-bar-wrapper">
+                                <div class="coverage-bar" style="width: 12%; background: #06b6d4;">
+                                    <span>12题</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="coverage-item">
+                            <div class="coverage-label">其他维度</div>
+                            <div class="coverage-bar-wrapper">
+                                <div class="coverage-bar" style="width: 5%; background: #64748b;">
+                                    <span>5题</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 1.5rem;">
+                        *多维度全面评估，确保结果的准确性和可靠性
+                    </p>
+                </div>
+
+                <!-- 评分流程图 -->
+                <div class="chart-container">
+                    <h4 style="text-align: center; margin-bottom: 2rem;">⚙️ 评分计算流程</h4>
+                    <div class="process-flow">
+                        <div class="flow-step">
+                            <div class="flow-number">1</div>
+                            <div class="flow-content">
+                                <div class="flow-title">回答问题</div>
+                                <div class="flow-desc">选择最符合自己的选项</div>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">
+                            <div class="flow-number">2</div>
+                            <div class="flow-content">
+                                <div class="flow-title">星座加分</div>
+                                <div class="flow-desc">对应星座得1分</div>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">
+                            <div class="flow-number">3</div>
+                            <div class="flow-content">
+                                <div class="flow-title">累积计算</div>
+                                <div class="flow-desc">汇总100题得分</div>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">
+                            <div class="flow-number">4</div>
+                            <div class="flow-content">
+                                <div class="flow-title">结果输出</div>
+                                <div class="flow-desc">最高分即为结果</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2>三、十二星座的心理学特征映射</h2>
+
+                <div class="constellation-detail">
+                    <h4>♈ 白羊座（3月21日-4月19日）</h4>
+                    <p><strong>心理特征</strong>：高外向性、高冲动性、低延迟满足能力</p>
+                    <p><strong>行为模式</strong>：行动优先、勇于冒险、竞争意识强、直率表达</p>
+                    <p><strong>心理学对应</strong>：感觉寻求型人格、高唤起需求</p>
+                </div>
+
+                <div class="constellation-detail">
+                    <h4>♉ 金牛座（4月20日-5月20日）</h4>
+                    <p><strong>心理特征</strong>：高稳定性、高尽责性、感官敏感</p>
+                    <p><strong>行为模式</strong>：追求安全感、注重物质享受、坚持性强、变化抵抗</p>
+                    <p><strong>心理学对应</strong>：低刺激寻求、高计划性、感觉导向</p>
+                </div>
+
+                <div class="constellation-detail">
+                    <h4>♊ 双子座（5月21日-6月21日）</h4>
+                    <p><strong>心理特征</strong>：高开放性、注意力分散、高语言能力</p>
+                    <p><strong>行为模式</strong>：好奇心强、多任务处理、社交活跃、思维跳跃</p>
+                    <p><strong>心理学对应</strong>：发散思维、外向型、高认知需求</p>
+                </div>
+
+                <div class="constellation-detail">
+                    <h4>♋ 巨蟹座（6月22日-7月22日）</h4>
+                    <p><strong>心理特征</strong>：高情绪敏感性、高依恋需求、防御机制发达</p>
+                    <p><strong>行为模式</strong>：重视家庭、情感丰富、保护欲强、怀旧倾向</p>
+                    <p><strong>心理学对应</strong>：高神经质、情感型决策、安全型/焦虑型依恋</p>
+                </div>
+
+                <div class="constellation-detail">
+                    <h4>♌ 狮子座（7月23日-8月22日）</h4>
+                    <p><strong>心理特征</strong>：高自尊需求、领导特质、自我中心倾向</p>
+                    <p><strong>行为模式</strong>：追求认可、慷慨大方、戏剧性表达、自信展现</p>
+                    <p><strong>心理学对应</strong>：高外向性、自我实现需求（马斯洛）、表演型人格</p>
+                </div>
+
+                <div class="constellation-detail">
+                    <h4>♍ 处女座（8月23日-9月22日）</h4>
+                    <p><strong>心理特征</strong>：完美主义、高细节关注、强迫性特征</p>
+                    <p><strong>行为模式</strong>：注重细节、分析能力强、追求效率、批判性思维</p>
+                    <p><strong>心理学对应</strong>：高尽责性、强迫型人格倾向、分析型思维</p>
+                </div>
+
+                <div class="constellation-detail">
+                    <h4>♎ 天秤座（9月23日-10月23日）</h4>
+                    <p><strong>心理特征</strong>：高宜人性、决策困难、审美敏感</p>
+                    <p><strong>行为模式</strong>：追求和谐、外交能力强、犹豫不决、重视公平</p>
+                    <p><strong>心理学对应</strong>：高宜人性、回避冲突、社会和谐需求</p>
+                </div>
+
+                <div class="constellation-detail">
+                    <h4>♏ 天蝎座（10月24日-11月22日）</h4>
+                    <p><strong>心理特征</strong>：高意志力、强控制需求、深度情感体验</p>
+                    <p><strong>行为模式</strong>：洞察力强、专注执着、神秘保密、复仇倾向</p>
+                    <p><strong>心理学对应</strong>：高内向性、深度思考、权力动机（麦克利兰）</p>
+                </div>
+
+                <div class="constellation-detail">
+                    <h4>♐ 射手座（11月23日-12月21日）</h4>
+                    <p><strong>心理特征</strong>：高开放性、乐观主义、自由需求</p>
+                    <p><strong>行为模式</strong>：追求自由、哲学思考、冒险探索、直言不讳</p>
+                    <p><strong>心理学对应</strong>：高外向性、探索型人格、超越需求</p>
+                </div>
+
+                <div class="constellation-detail">
+                    <h4>♑ 摩羯座（12月22日-1月19日）</h4>
+                    <p><strong>心理特征</strong>：高成就动机、延迟满足能力强、实用主义</p>
+                    <p><strong>行为模式</strong>：目标导向、责任感强、传统保守、坚韧务实</p>
+                    <p><strong>心理学对应</strong>：高尽责性、成就动机、自律性强</p>
+                </div>
+
+                <div class="constellation-detail">
+                    <h4>♒ 水瓶座（1月20日-2月18日）</h4>
+                    <p><strong>心理特征</strong>：高独立性、创新思维、理性主义</p>
+                    <p><strong>行为模式</strong>：前卫理念、人道主义、情感疏离、反传统</p>
+                    <p><strong>心理学对应</strong>：高开放性、独立型人格、认知型决策</p>
+                </div>
+
+                <div class="constellation-detail">
+                    <h4>♓ 双鱼座（2月19日-3月20日）</h4>
+                    <p><strong>心理特征</strong>：高同理心、想象力丰富、边界模糊</p>
+                    <p><strong>行为模式</strong>：富有同情心、艺术气质、易受影响、逃避现实</p>
+                    <p><strong>心理学对应</strong>：高宜人性、直觉型、高情绪共鸣能力</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2>四、研究局限与说明</h2>
+                <ul>
+                    <li><strong>非诊断工具</strong>：本测试仅用于自我探索和娱乐，不能作为心理诊断依据</li>
+                    <li><strong>文化差异</strong>：星座理论源自西方文化，在不同文化背景下可能有不同解读</li>
+                    <li><strong>个体差异</strong>：每个人都是独特的，不能完全用星座定义一个人</li>
+                    <li><strong>动态变化</strong>：人格特质会随着年龄、经历而变化，测试结果反映当下状态</li>
+                    <li><strong>自我报告偏差</strong>：测试结果基于自我认知，可能存在认知盲区</li>
+                </ul>
+            </div>
+
+            <div class="content-card">
+                <h2>五、参考文献</h2>
+                <ul class="reference-list">
+                    <li>Goldberg, L. R. (1993). The structure of phenotypic personality traits. American Psychologist, 48(1), 26.</li>
+                    <li>Jung, C. G. (1971). Psychological Types. Princeton University Press.</li>
+                    <li>McCrae, R. R., & Costa, P. T. (1987). Validation of the five-factor model of personality. Journal of Personality and Social Psychology, 52(1), 81.</li>
+                    <li>Eysenck, H. J. (1967). The biological basis of personality. Springfield, IL: Thomas.</li>
+                    <li>Allport, G. W. (1937). Personality: A psychological interpretation. New York: Holt.</li>
+                </ul>
+            </div>
+
+            <div class="disclaimer-card">
+                <h3>⚠️ 免责声明</h3>
+                <p>本测试仅供娱乐和自我认知参考，不构成任何专业心理咨询建议。测试结果不能用于任何形式的心理诊断、职业选择、人际评判等严肃决策。如有心理健康困扰，请咨询专业心理咨询师或精神科医生。</p>
+            </div>
+
+            <div class="back-button-container">
+                <button class="btn btn-primary" onclick="showPage('home-page')">
+                    ← 返回首页
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
