@@ -3362,7 +3362,7 @@ const TEST_DATA = {
           ]
         },
         {
-          "text": "相信命运会有更好安排",
+          "text": "相信命运会有更好的安排",
           "constellations": [
             "双鱼座",
             "射手座"

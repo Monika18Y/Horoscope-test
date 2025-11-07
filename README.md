@@ -302,7 +302,7 @@ with open('data.js', 'w', encoding='utf-8') as f:
 
 **⭐ 如果这个项目对你有帮助，请给它一个星标！**
 
-Made with ❤️ by 星座测试团队
+Made with ❤️ by M0n1k4
 
 </div>
 
